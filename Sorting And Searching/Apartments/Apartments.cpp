@@ -1,7 +1,5 @@
 #include<bits/stdc++.h>
-#define int long long
-#define all(x) (x).begin(),(x).end() 
-#define sortv(x) sort(all(x))     
+#define int long long     
 using namespace std;
 main()
 {
@@ -17,25 +15,25 @@ main()
 	{
 		cin>>apartments[i];
 	}
-	sortv(applicants);
-	sortv(apartments);
+	sort(applicants.begin(),applicants.end());
+	sort(apartments.begin(),apartments.end());
 	int ans=0;
 	int i=0,j=0;
-	while(i<n&&j<m)
+	while(i<m&&j<n)
 	{
-		if(apartments[i]>applicants[j]-k&&apartments[i]<applicants[j]+k)
+		if(apartments[i]>=applicants[j]-k&&apartments[i]<=applicants[j]+k)
 		{
 			ans++;
 			i++;
 			j++;
 		}
-		else if(apartments[j]<applicants[i]-k)
-		{
-			j++;
-		}
-		else
+		else if(apartments[i]<applicants[j]-k)
 		{
 			i++;
+		}
+		else if(applicants[j]+k<apartments[i])
+		{
+			j++;
 		}
 	}
 	cout<<ans<<endl;
