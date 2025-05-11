@@ -1,33 +1,39 @@
 #include<bits/stdc++.h>
-#define int long long
 using namespace std;
-main()
+int main()
 {
-	int n,x;
+	long long n,x;
 	cin>>n>>x;
-	vector<int> v(n);
+	vector<pair<long long,long long>> v;
 	for(int i=0;i<n;i++)
 	{
-		cin>>v[i];
+		long long l;
+		cin>>l;
+		v.push_back({l,i+1});
 	}
+	//~ for(auto i:v)
+	//~ {
+		//~ cout<<i.first<<" "<<i.second<<endl;
+	//~ }
 	sort(v.begin(),v.end());
 	int i=0,j=n-1;
 	while(i<j)
 	{
-		int sum=v[i]+v[j];
+		int sum=v[i].first+v[j].first;
 		if(sum==x)
 		{
-			cout<<i+1<<" "<<j+1<<endl;
-			exit(0);
+			cout<<v[i].second<<" "<<v[j].second<<endl;
+			return 0;
 		}
-		else if(sum>x)
-		{
-			j--;
-		}
-		else
+		else if(sum<x)
 		{
 			i++;
 		}
+		else
+		{
+			j--;
+		}
 	}
 	cout<<"IMPOSSIBLE"<<endl;
+	return 0;
 }
